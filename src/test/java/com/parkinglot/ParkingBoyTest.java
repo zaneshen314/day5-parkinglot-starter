@@ -84,6 +84,18 @@ public class ParkingBoyTest {
         assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
 
+    @Test
+    public void should_print_error_message_when_parking_boy_given_parking_lot_is_full() {
+        // Given
+        ParkingLot parkingLot = new ParkingLot(0);
+        ParkingBoy boy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        // When
+        Ticket ticket = boy.park(car);
+        // Then
+        assertThat(systemOut()).contains(NO_AVAILABLE_POSITION_ERROR_MSG);
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
