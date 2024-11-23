@@ -14,16 +14,16 @@ public class ParkingLot {
 
     private final Map<Ticket, Car> parkingRecords = new HashMap<>();
 
-    public ParkingLot(){
+    public ParkingLot() {
         this.maxCapacity = DEFAULT_CAPACITY;
     }
 
-    public ParkingLot(Integer maxCapacity){
+    public ParkingLot(Integer maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
 
-    public Ticket park(Car car){
-        if ((int) maxCapacity == parkingRecords.size()) {
+    public Ticket park(Car car) {
+        if (!haveSpace()) {
             System.out.println(NO_AVAILABLE_POSITION_ERROR_MSG);
             return null;
         }
@@ -32,11 +32,15 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car fetch(Ticket ticket){
+    public Car fetch(Ticket ticket) {
         Car removed = parkingRecords.remove(ticket);
         if (removed == null) {
             System.out.println(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
         }
         return removed;
+    }
+
+    public boolean haveSpace() {
+        return parkingRecords.size() < maxCapacity;
     }
 }
