@@ -1,4 +1,4 @@
-package com.parkinglot;
+package com.parkinglot.entity;
 
 import java.util.HashMap;
 import java.util.Map;

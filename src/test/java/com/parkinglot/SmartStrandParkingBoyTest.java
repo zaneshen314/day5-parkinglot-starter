@@ -1,5 +1,10 @@
 package com.parkinglot;
 
+import com.parkinglot.entity.Car;
+import com.parkinglot.entity.ParkingBoy;
+import com.parkinglot.entity.ParkingLot;
+import com.parkinglot.entity.Ticket;
+import com.parkinglot.strategy.SmartParkingStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +27,9 @@ public class SmartStrandParkingBoyTest {
     @Test
     public void should_return_park_car_in_first_parking_lot_when_smart_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_same_number_empty() {
         //given
+        ParkingBoy boy = new ParkingBoy(new SmartParkingStrategy());
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
-        SmartParkingBoy boy = new SmartParkingBoy();
         boy.workInParkingLot(parkingLot1);
         boy.workInParkingLot(parkingLot2);
         Car car = new Car();
@@ -39,9 +44,9 @@ public class SmartStrandParkingBoyTest {
     @Test
     public void should_return_park_car_in_second_parking_lot_when_smart_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_second_parking_lot_more_empty() {
         //given
+        ParkingBoy boy = new ParkingBoy(new SmartParkingStrategy());
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot(11);
-        SmartParkingBoy boy = new SmartParkingBoy();
         boy.workInParkingLot(parkingLot1);
         boy.workInParkingLot(parkingLot2);
         Car car = new Car();
@@ -56,7 +61,7 @@ public class SmartStrandParkingBoyTest {
     @Test
     public void should_right_car_when_smart_parking_boy_has_two_parking_lot_fetch_given_two_ticket() {
         // Given
-        SmartParkingBoy boy = new SmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SmartParkingStrategy());
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot seconedParkingLot = new ParkingLot();
         boy.workInParkingLot(firstParkingLot);
@@ -76,7 +81,7 @@ public class SmartStrandParkingBoyTest {
     @Test
     public void should_print_error_when_smart_parking_boy_has_two_parking_lot_given_error_ticket() {
         // Given
-        SmartParkingBoy boy = new SmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SmartParkingStrategy());
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot seconedParkingLot = new ParkingLot();
         boy.workInParkingLot(firstParkingLot);
@@ -92,7 +97,7 @@ public class SmartStrandParkingBoyTest {
     @Test
     public void should_print_error_when_smart_parking_boy_has_two_parking_lot_given_used_ticket() {
         // Given
-        SmartParkingBoy boy = new SmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SmartParkingStrategy());
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot seconedParkingLot = new ParkingLot();
         boy.workInParkingLot(firstParkingLot);
@@ -109,9 +114,9 @@ public class SmartStrandParkingBoyTest {
     @Test
     public void should_return_null_and_print_error_parking_lot_when_smart_parking_boy_fetch_given_parking_boy_has_two_parking_lot_given_no_one_have_space() {
         //given
+        ParkingBoy boy = new ParkingBoy(new SmartParkingStrategy());
         ParkingLot parkingLot1 = new ParkingLot(0);
         ParkingLot parkingLot2 = new ParkingLot(0);
-        SmartParkingBoy boy = new SmartParkingBoy();
         boy.workInParkingLot(parkingLot1);
         boy.workInParkingLot(parkingLot2);
         Car car = new Car();

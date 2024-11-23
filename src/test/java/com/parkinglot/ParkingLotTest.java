@@ -1,5 +1,8 @@
 package com.parkinglot;
 
+import com.parkinglot.entity.Car;
+import com.parkinglot.entity.ParkingLot;
+import com.parkinglot.entity.Ticket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

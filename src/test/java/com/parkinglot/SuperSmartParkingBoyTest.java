@@ -1,5 +1,10 @@
 package com.parkinglot;
 
+import com.parkinglot.entity.Car;
+import com.parkinglot.entity.ParkingBoy;
+import com.parkinglot.entity.ParkingLot;
+import com.parkinglot.entity.Ticket;
+import com.parkinglot.strategy.SuperSmartParkingStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +29,7 @@ public class SuperSmartParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
-        SuperSmartParkingBoy boy = new SuperSmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SuperSmartParkingStrategy());
         boy.workInParkingLot(parkingLot1);
         boy.workInParkingLot(parkingLot2);
         Car car = new Car();
@@ -41,7 +46,7 @@ public class SuperSmartParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot(11);
-        SuperSmartParkingBoy boy = new SuperSmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SuperSmartParkingStrategy());
         boy.workInParkingLot(parkingLot1);
         boy.workInParkingLot(parkingLot2);
         Car car = new Car();
@@ -56,7 +61,7 @@ public class SuperSmartParkingBoyTest {
     @Test
     public void should_right_car_when_super_smart_parking_boy_has_two_parking_lot_fetch_given_two_ticket() {
         // Given
-        SuperSmartParkingBoy boy = new SuperSmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SuperSmartParkingStrategy());
         ParkingLot firstParkingLot = new ParkingLot(5);
         ParkingLot seconedParkingLot = new ParkingLot(6);
         boy.workInParkingLot(firstParkingLot);
@@ -76,7 +81,7 @@ public class SuperSmartParkingBoyTest {
     @Test
     public void should_print_error_when_super_smart_parking_boy_has_two_parking_lot_given_error_ticket() {
         // Given
-        SuperSmartParkingBoy boy = new SuperSmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SuperSmartParkingStrategy());
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot seconedParkingLot = new ParkingLot();
         boy.workInParkingLot(firstParkingLot);
@@ -92,7 +97,7 @@ public class SuperSmartParkingBoyTest {
     @Test
     public void should_print_error_when_super_smart_parking_boy_has_two_parking_lot_given_used_ticket() {
         // Given
-        SuperSmartParkingBoy boy = new SuperSmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SuperSmartParkingStrategy());
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot seconedParkingLot = new ParkingLot();
         boy.workInParkingLot(firstParkingLot);
@@ -111,7 +116,7 @@ public class SuperSmartParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot(0);
         ParkingLot parkingLot2 = new ParkingLot(0);
-        SuperSmartParkingBoy boy = new SuperSmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy(new SuperSmartParkingStrategy());
         boy.workInParkingLot(parkingLot1);
         boy.workInParkingLot(parkingLot2);
         Car car = new Car();
