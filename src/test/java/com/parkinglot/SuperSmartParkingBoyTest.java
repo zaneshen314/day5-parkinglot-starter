@@ -33,6 +33,23 @@ public class SuperSmartParkingBoyTest {
         assertFalse(parkingLot2.existTicket(ticket));
     }
 
+    @Test
+    public void should_return_park_car_in_second_parking_lot_when_super_smart_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_second_parking_lot_more_empty() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot(11);
+        SmartParkingBoy boy = new SmartParkingBoy();
+        boy.workInParkingLot(parkingLot1);
+        boy.workInParkingLot(parkingLot2);
+        Car car = new Car();
+        // When
+        Ticket ticket = boy.park(car);
+        // Then
+        assertFalse(parkingLot1.existTicket(ticket));
+        Car fetchedCar2 = parkingLot2.fetch(ticket);
+        assertEquals(car,fetchedCar2);
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
