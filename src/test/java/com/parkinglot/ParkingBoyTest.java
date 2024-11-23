@@ -124,6 +124,23 @@ public class ParkingBoyTest {
         assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
 
+    @Test
+    public void should_return_park_car_in_first_parking_lot_when_parking_boy_fetch_given_parking_boy_has_two_parking_lot_but_only_one_have_space() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        ParkingLot parkingLot2 = new ParkingLot();
+        ParkingBoy boy = new ParkingBoy();
+        boy.workInParkingLot(parkingLot1);
+        boy.workInParkingLot(parkingLot2);
+        Car car = new Car();
+        // When
+        Ticket ticket = boy.park(car);
+        // Then
+        Car fetchedCar1 = parkingLot1.fetch(ticket);
+        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+        Car fetchedCar2 = parkingLot2.fetch(ticket);
+        assertEquals(car,fetchedCar2);
+    }
 
     private String systemOut() {
         return outContent.toString();
