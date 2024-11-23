@@ -24,6 +24,8 @@ public class ParkingBoyTest {
     public void should_return_ticket_when_parking_boy_park_given_a_car() {
         // Given
         ParkingBoy boy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        boy.workInParkingLot(parkingLot);
         Car car = new Car();
         // When
         Ticket ticket = boy.park(car);
@@ -35,6 +37,8 @@ public class ParkingBoyTest {
     public void should_return_car_when_parking_boy_fetch_given_a_ticket() {
         // Given
         ParkingBoy boy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        boy.workInParkingLot(parkingLot);
         Car car = new Car();
         // When
         Ticket ticket = boy.park(car);
@@ -46,6 +50,8 @@ public class ParkingBoyTest {
     public void should_return_right_car_when_parking_boy_fetch_given_two_ticket() {
         //given
         ParkingBoy boy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        boy.workInParkingLot(parkingLot);
         Car car = new Car();
         Car car2 = new Car();
         Ticket ticket = boy.park(car);
@@ -62,6 +68,8 @@ public class ParkingBoyTest {
     public void should_print_error_message_when_parking_boy_fetch_given_wrong_ticket(){
         // Given
         ParkingBoy boy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        boy.workInParkingLot(parkingLot);
         Car car = new Car();
         Ticket ticket = new Ticket();
         // When
@@ -75,6 +83,8 @@ public class ParkingBoyTest {
     public void should_print_error_message_when_parking_boy_fetch_given_used_ticket() {
         // Given
         ParkingBoy boy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        boy.workInParkingLot(parkingLot);
         Car car = new Car();
         // When
         Ticket ticket = boy.park(car);
@@ -88,7 +98,8 @@ public class ParkingBoyTest {
     public void should_print_error_message_when_parking_boy_given_parking_lot_is_full() {
         // Given
         ParkingLot parkingLot = new ParkingLot(0);
-        ParkingBoy boy = new ParkingBoy(parkingLot);
+        ParkingBoy boy = new ParkingBoy();
+        boy.workInParkingLot(parkingLot);
         Car car = new Car();
         // When
         Ticket ticket = boy.park(car);
