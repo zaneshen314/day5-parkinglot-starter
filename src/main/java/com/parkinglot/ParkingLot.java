@@ -6,6 +6,7 @@ import java.util.Map;
 public class ParkingLot {
 
     private static final Integer DEFAULT_CAPACITY = 10;
+    public static final String UNRECOGNIZED_PARKING_TICKET_ERROR_MSG = "Unrecognized parking ticket.";
     private Integer maxCapacity;
     private Integer currentCapacity;
 
@@ -32,6 +33,12 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket){
-        return parkingRecords.remove(ticket);
+        Car removed = parkingRecords.remove(ticket);
+        if (removed != null) {
+            currentCapacity--;
+        } else {
+            System.out.println(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+        }
+        return removed;
     }
 }
