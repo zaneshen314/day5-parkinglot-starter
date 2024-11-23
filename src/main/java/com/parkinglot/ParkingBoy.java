@@ -1,6 +1,7 @@
 package com.parkinglot;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,15 +28,18 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
-        return getAvailableParkingLot()
+        return  parkingLots.stream()
+                .filter(parkingLot -> parkingLot.existTicket(ticket))
+                .findFirst()
                 .map(lot -> lot.fetch(ticket))
-                .orElseGet(()->{
-                    System.out.println(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);;
+                .orElseGet(() -> {
+                    System.out.println(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
                     return null;
                 });
     }
 
     public Optional<ParkingLot> getAvailableParkingLot() {
-        return parkingLots.stream().filter(ParkingLot::haveSpace).findFirst();
+        return parkingLots.stream()
+                .filter(ParkingLot::haveSpace).max(Comparator.comparingInt(ParkingLot::getAvailablePosition));
     }
 }
