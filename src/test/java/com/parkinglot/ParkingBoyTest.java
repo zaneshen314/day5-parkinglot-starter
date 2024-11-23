@@ -120,8 +120,7 @@ public class ParkingBoyTest {
         // Then
         Car fetchedCar1 = parkingLot1.fetch(ticket);
         assertEquals(car,fetchedCar1);
-        Car fetchedCar2 = parkingLot2.fetch(ticket);
-        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+        assertFalse(parkingLot2.existTicket(ticket));
     }
 
     @Test
@@ -136,8 +135,7 @@ public class ParkingBoyTest {
         // When
         Ticket ticket = boy.park(car);
         // Then
-        Car fetchedCar1 = parkingLot1.fetch(ticket);
-        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+        assertFalse(parkingLot1.existTicket(ticket));
         Car fetchedCar2 = parkingLot2.fetch(ticket);
         assertEquals(car,fetchedCar2);
     }
@@ -224,8 +222,24 @@ public class ParkingBoyTest {
         // Then
         Car fetchedCar1 = parkingLot1.fetch(ticket);
         assertEquals(car,fetchedCar1);
+        assertFalse(parkingLot2.existTicket(ticket));
+    }
+
+    @Test
+    public void should_return_park_car_in_second_parking_lot_when_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_second_parking_lot_more_empty() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot(11);
+        ParkingBoy boy = new ParkingBoy();
+        boy.workInParkingLot(parkingLot1);
+        boy.workInParkingLot(parkingLot2);
+        Car car = new Car();
+        // When
+        Ticket ticket = boy.park(car);
+        // Then
+        assertFalse(parkingLot1.existTicket(ticket));
         Car fetchedCar2 = parkingLot2.fetch(ticket);
-        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+        assertEquals(car,fetchedCar2);
     }
 
     private String systemOut() {
