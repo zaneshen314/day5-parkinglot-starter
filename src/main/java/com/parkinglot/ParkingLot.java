@@ -41,18 +41,17 @@ public class ParkingLot {
     }
 
     public boolean existTicket(Ticket ticket) {
-        System.out.println(parkingRecords.containsKey(ticket));
         return parkingRecords.containsKey(ticket);
     }
     public boolean haveSpace() {
         return parkingRecords.size() < maxCapacity;
     }
 
-    public Integer getParkingQuantity() {
-        return parkingRecords.size();
+    public Integer getAvailablePosition() {
+        return maxCapacity - parkingRecords.size();
     }
 
-    public Integer getAvailablePosition() {
-        return maxCapacity - getParkingQuantity();
+    public int getEmptyRate(){
+        return getAvailablePosition() / maxCapacity;
     }
 }
