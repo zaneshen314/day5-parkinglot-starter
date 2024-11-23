@@ -262,6 +262,22 @@ public class ParkingBoyTest {
         assertEquals(secondCar, secondFetch);
     }
 
+    @Test
+    public void should_print_error_when_smart_parking_boy_has_two_parking_lot_given_error_ticket() {
+        // Given
+        ParkingBoy boy = new ParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot seconedParkingLot = new ParkingLot();
+        boy.workInParkingLot(firstParkingLot);
+        boy.workInParkingLot(seconedParkingLot);
+        Car firstCar = new Car();
+        // When
+        Ticket ticket = boy.park(firstCar);
+        Car fetch = boy.fetch(new Ticket());
+        // Then
+        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
