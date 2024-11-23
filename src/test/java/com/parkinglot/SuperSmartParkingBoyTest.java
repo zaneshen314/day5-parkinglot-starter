@@ -50,6 +50,27 @@ public class SuperSmartParkingBoyTest {
         assertEquals(car,fetchedCar2);
     }
 
+    @Test
+    public void should_right_car_when_super_smart_parking_boy_has_two_parking_lot_fetch_given_two_ticket() {
+        // Given
+        SmartParkingBoy boy = new SmartParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot(5);
+        ParkingLot seconedParkingLot = new ParkingLot(6);
+        boy.workInParkingLot(firstParkingLot);
+        boy.workInParkingLot(seconedParkingLot);
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        // When
+        Ticket firstTicket = boy.park(firstCar);
+        Ticket secondTicket = boy.park(secondCar);
+        Car firstFetch = boy.fetch(firstTicket);
+        Car secondFetch = boy.fetch(secondTicket);
+        // Then
+        assertEquals(firstCar, firstFetch);
+        assertEquals(secondCar, secondFetch);
+    }
+
+
     private String systemOut() {
         return outContent.toString();
     }
