@@ -88,6 +88,23 @@ public class SuperSmartParkingBoyTest {
         assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
 
+    @Test
+    public void should_print_error_when_super_smart_parking_boy_has_two_parking_lot_given_used_ticket() {
+        // Given
+        SmartParkingBoy boy = new SmartParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot seconedParkingLot = new ParkingLot();
+        boy.workInParkingLot(firstParkingLot);
+        boy.workInParkingLot(seconedParkingLot);
+        Car firstCar = new Car();
+        // When
+        Ticket ticket = boy.park(firstCar);
+        Car firstFetch = boy.fetch(ticket);
+        Car secondFetch = boy.fetch(ticket);
+        // Then
+        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+    }
+
 
     private String systemOut() {
         return outContent.toString();
