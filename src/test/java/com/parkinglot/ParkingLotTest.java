@@ -135,6 +135,4 @@ public class ParkingLotTest {
     private String systemOut() {
         return outContent.toString();
     }
-
-
 }
