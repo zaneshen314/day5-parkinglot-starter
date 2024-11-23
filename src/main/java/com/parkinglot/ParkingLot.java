@@ -3,6 +3,7 @@ package com.parkinglot;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.parkinglot.constant.ErrorConstant.NO_AVAILABLE_POSITION_ERROR_MSG;
 import static com.parkinglot.constant.ErrorConstant.UNRECOGNIZED_PARKING_TICKET_ERROR_MSG;
 
 public class ParkingLot {
@@ -25,6 +26,7 @@ public class ParkingLot {
 
     public Ticket park(Car car){
         if ((int) maxCapacity == currentCapacity) {
+            System.out.println(NO_AVAILABLE_POSITION_ERROR_MSG);
             return null;
         }
         Ticket ticket = new Ticket();

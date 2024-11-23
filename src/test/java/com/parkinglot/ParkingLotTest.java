@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static com.parkinglot.constant.ErrorConstant.NO_AVAILABLE_POSITION_ERROR_MSG;
 import static com.parkinglot.constant.ErrorConstant.UNRECOGNIZED_PARKING_TICKET_ERROR_MSG;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -107,10 +108,6 @@ public class ParkingLotTest {
         assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
 
-    private String systemOut() {
-        return outContent.toString();
-    }
-
     @Test
     public void should_print_error_message_when_fetch_given_used_ticket() {
         // Given
@@ -123,4 +120,21 @@ public class ParkingLotTest {
         // Then
         assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
+
+    @Test
+    public void should_print_error_message_when_given_parking_lot_is_full() {
+        // Given
+        ParkingLot parkingLot = new ParkingLot(0);
+        Car car = new Car();
+        // When
+        Ticket ticket = parkingLot.park(car);
+        // Then
+        assertThat(systemOut()).contains(NO_AVAILABLE_POSITION_ERROR_MSG);
+    }
+
+    private String systemOut() {
+        return outContent.toString();
+    }
+
+
 }
