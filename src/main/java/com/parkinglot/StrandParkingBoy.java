@@ -1,17 +1,16 @@
 package com.parkinglot;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import static com.parkinglot.constant.ErrorConstant.NO_AVAILABLE_POSITION_ERROR_MSG;
 import static com.parkinglot.constant.ErrorConstant.UNRECOGNIZED_PARKING_TICKET_ERROR_MSG;
 
-public class ParkingBoy {
-    private final List<ParkingLot> parkingLots = new ArrayList<>();
+public class StrandParkingBoy {
+    protected final List<ParkingLot> parkingLots = new ArrayList<>();
 
-    public ParkingBoy() {
+    public StrandParkingBoy() {
     }
 
     public void workInParkingLot(ParkingLot lot) {
@@ -40,6 +39,6 @@ public class ParkingBoy {
 
     public Optional<ParkingLot> getAvailableParkingLot() {
         return parkingLots.stream()
-                .filter(ParkingLot::haveSpace).max(Comparator.comparingInt(ParkingLot::getAvailablePosition));
+                .filter(ParkingLot::haveSpace).findFirst();
     }
 }
