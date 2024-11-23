@@ -209,7 +209,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_park_car_in_first_parking_lot_when_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_same_number_empty() {
+    public void should_return_park_car_in_first_parking_lot_when_smart_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_same_number_empty() {
         //given
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
@@ -226,7 +226,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_park_car_in_second_parking_lot_when_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_second_parking_lot_more_empty() {
+    public void should_return_park_car_in_second_parking_lot_when_smart_parking_boy_fetch_given_parking_boy_given_has_two_parking_lot_given_second_parking_lot_more_empty() {
         //given
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot(11);
@@ -240,6 +240,26 @@ public class ParkingBoyTest {
         assertFalse(parkingLot1.existTicket(ticket));
         Car fetchedCar2 = parkingLot2.fetch(ticket);
         assertEquals(car,fetchedCar2);
+    }
+
+    @Test
+    public void should_right_car_when_smart_parking_boy_has_two_parking_lot_fetch_given_two_ticket() {
+        // Given
+        ParkingBoy boy = new ParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot seconedParkingLot = new ParkingLot();
+        boy.workInParkingLot(firstParkingLot);
+        boy.workInParkingLot(seconedParkingLot);
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        // When
+        Ticket firstTicket = boy.park(firstCar);
+        Ticket secondTicket = boy.park(secondCar);
+        Car firstFetch = boy.fetch(firstTicket);
+        Car secondFetch = boy.fetch(secondTicket);
+        // Then
+        assertEquals(firstCar, firstFetch);
+        assertEquals(secondCar, secondFetch);
     }
 
     private String systemOut() {
