@@ -71,6 +71,19 @@ public class ParkingBoyTest {
         assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
 
+    @Test
+    public void should_print_error_message_when_parking_boy_fetch_given_used_ticket() {
+        // Given
+        ParkingBoy boy = new ParkingBoy();
+        Car car = new Car();
+        // When
+        Ticket ticket = boy.park(car);
+        Car fetch = boy.fetch(ticket);
+        Car usedFetch = boy.fetch(ticket);
+        // Then
+        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
