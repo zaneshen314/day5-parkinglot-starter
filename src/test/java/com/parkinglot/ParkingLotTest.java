@@ -69,4 +69,14 @@ public class ParkingLotTest {
         //then
         assertNull(fetchedCar);
     }
+
+    @Test void should_return_nothing_when_parking_given_parking_lot_is_full() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(0);
+        Car car = new Car();
+        //when
+        Ticket ticket = parkingLot.park(car);
+        //then
+        assertNull(ticket);
+    }
 }
