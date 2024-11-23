@@ -3,10 +3,11 @@ package com.parkinglot;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.parkinglot.constant.ErrorConstant.UNRECOGNIZED_PARKING_TICKET_ERROR_MSG;
+
 public class ParkingLot {
 
     private static final Integer DEFAULT_CAPACITY = 10;
-    public static final String UNRECOGNIZED_PARKING_TICKET_ERROR_MSG = "Unrecognized parking ticket.";
     private Integer maxCapacity;
     private Integer currentCapacity;
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static com.parkinglot.constant.ErrorConstant.UNRECOGNIZED_PARKING_TICKET_ERROR_MSG;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -103,10 +104,23 @@ public class ParkingLotTest {
         Ticket ignore = parkingLot.park(car);
         Car fetch = parkingLot.fetch(ticket);
         // Then
-        assertThat(systemOut()).contains("Unrecognized parking ticket.");
+        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
 
     private String systemOut() {
         return outContent.toString();
+    }
+
+    @Test
+    public void should_print_error_message_when_fetch_given_used_ticket() {
+        // Given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        // When
+        Ticket ticket = parkingLot.park(car);
+        Car fetch = parkingLot.fetch(ticket);
+        Car usedFetch = parkingLot.fetch(ticket);
+        // Then
+        assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
     }
 }
