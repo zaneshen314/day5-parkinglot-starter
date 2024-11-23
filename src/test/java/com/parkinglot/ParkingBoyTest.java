@@ -125,7 +125,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_park_car_in_first_parking_lot_when_parking_boy_fetch_given_parking_boy_has_two_parking_lot_but_only_one_have_space() {
+    public void should_return_park_car_in_first_parking_lot_when_parking_boy_fetch_given_parking_boy_has_two_parking_lot_given_only_one_have_space() {
         //given
         ParkingLot parkingLot1 = new ParkingLot(0);
         ParkingLot parkingLot2 = new ParkingLot();
@@ -193,6 +193,21 @@ public class ParkingBoyTest {
         Car secondFetch = boy.fetch(ticket);
         // Then
         assertThat(systemOut()).contains(UNRECOGNIZED_PARKING_TICKET_ERROR_MSG);
+    }
+
+    @Test
+    public void should_return_park_car_in_first_parking_lot_when_parking_boy_fetch_given_parking_boy_has_two_parking_lot_given_no_one_have_space() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        ParkingLot parkingLot2 = new ParkingLot(0);
+        ParkingBoy boy = new ParkingBoy();
+        boy.workInParkingLot(parkingLot1);
+        boy.workInParkingLot(parkingLot2);
+        Car car = new Car();
+        // When
+        Ticket ticket = boy.park(car);
+        // Then
+        assertThat(systemOut()).contains(NO_AVAILABLE_POSITION_ERROR_MSG);
     }
 
     private String systemOut() {
