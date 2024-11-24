@@ -21,16 +21,9 @@ public class ParkingBoy {
     public ParkingBoy(ParkingStrategy parkingStrategy) {
         this.parkingStrategy = parkingStrategy;
     }
-    public ParkingStrategy getParkingStrategy() {
-        return parkingStrategy;
-    }
 
     public void setParkingStrategy(ParkingStrategy parkingStrategy) {
         this.parkingStrategy = parkingStrategy;
-    }
-
-    public List<ParkingLot> getParkingLots() {
-        return parkingLots;
     }
 
     public void workInParkingLot(ParkingLot lot) {
@@ -56,6 +49,4 @@ public class ParkingBoy {
                     return null;
                 });
     }
-
-
 }
